@@ -1,0 +1,231 @@
+body {
+	background-color: #a3d3ff;
+	margin: 0;
+}
+
+#container {
+	height: 600px;
+	width: 1160px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0;
+}
+
+.gradient {
+	width: 30px;
+	float: left;
+	height: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+#left_gradient {
+	border-bottom-left-radius: 30px;
+	background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPgo8bGluZWFyR3JhZGllbnQgaWQ9Imc2OTgiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMTAwJSIgeTE9IjEwMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgo8c3RvcCBzdG9wLWNvbG9yPSIjRkZGRkZGIiBvZmZzZXQ9IjAiLz48c3RvcCBzdG9wLWNvbG9yPSIjQTNEM0ZGIiBvZmZzZXQ9IjEiLz4KPC9saW5lYXJHcmFkaWVudD4KPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNnNjk4KSIgLz4KPC9zdmc+');
+}
+
+#right_gradient {
+	background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPgo8bGluZWFyR3JhZGllbnQgaWQ9Imc2MTYiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIwJSI+CjxzdG9wIHN0b3AtY29sb3I9IiNGRkZGRkYiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiNBM0QzRkYiIG9mZnNldD0iMSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2c2MTYpIiAvPgo8L3N2Zz4=');
+	border-bottom-right-radius: 30px;
+}
+
+#content {
+	width: 1100px;
+	height: 100%;
+	background-color: #fff;
+	margin: 0;
+	float: left;
+}
+
+header {
+	width: 100%;
+	height: 60px;
+}
+
+article {
+	width: 100%;
+	height: 500px;
+}
+
+footer {
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	padding-top: 10px;
+	font-size: 13px;
+	color: #999;
+}
+
+a {
+	color: #999;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #666;
+	text-decoration: none;
+}
+
+#map_container {
+	height: 500px;
+	width: 500px;
+	float: left;
+}
+
+#map_container img {
+	max-width: none;
+}
+
+#controls_container {
+	float: left;
+	height: 500px;
+	width: 550px;
+	overflow: hidden;
+	position: relative;
+}
+
+#content .overview { list-style: none; position: absolute; left: 0; top: 0; }
+#content .thumb .end,
+#content .thumb { background-color: #555; }
+#content .scrollbar { position: relative; float: right; width: 15px; }
+#content .track { background-color: #bbb; height: 100%; width:13px; position: relative; padding: 0 1px; }
+#content .thumb { height: 20px; width: 13px; cursor: pointer; overflow: hidden; position: absolute; top: 0; }
+#content .thumb .end { overflow: hidden; height: 5px; width: 13px; }
+#content .disable{ display: none; }
+
+.adress {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.adress_edit {
+	width: 80%;
+	position: absolute;
+	right: 0;
+}
+
+.arrow_span {
+	padding-left: 32px;
+	background-color: #DDD;
+	display: block;
+	width: 80%;
+	background-position: left;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	margin-bottom: 5px;
+	
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.arrow_span:hover {
+	background-color: #a3d3ff;
+}
+
+.span_show {
+	background-image: url('../img/arrow_right.png');
+}
+
+.span_hide {
+	background-image: url('../img/arrow_down.png');
+}
+
+.waypoints {
+	width: 80%;
+	height: 250px;
+	padding-left: 32px;
+	background-color: #DDD;
+	display: none;
+	margin-left: auto;
+	margin-right: auto; 
+}
+
+.new_waypoint {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.add_waypoint_button {
+	width: 30%;
+	display: block;
+	cursor: pointer;
+	background-color: #bbb;
+	text-align: center;
+}
+
+.add_waypoint_button:hover {
+	background-color: #a3d3ff;
+}
+
+#waypoints_list { width: 95%; clear: both; margin: 10px 0 10px; }
+#waypoints_list .viewport { width: 95%; height: 180px; overflow: hidden; position: relative; }
+#waypoints_list .overview { list-style: none; position: absolute; left: 0; top: 0; }
+#waypoints_list .thumb .end,
+#waypoints_list .thumb { background-color: #555; }
+#waypoints_list .scrollbar { position: relative; float: right; width: 15px; }
+#waypoints_list .track { background-color: #bbb; height: 100%; width:13px; position: relative; padding: 0 1px; }
+#waypoints_list .thumb { height: 20px; width: 13px; cursor: pointer; overflow: hidden; position: absolute; top: 0; }
+#waypoints_list .thumb .end { overflow: hidden; height: 5px; width: 13px; }
+#waypoints_list .disable{ display: none; }
+.noSelect { user-select: none; -o-user-select: none; -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none; }
+
+.remove_button {
+	background-image: url('../img/remove.png');
+	background-repeat: no-repeat;
+	background-position: right;
+	width: 24px;
+	height: 24px;
+	display: inline-block;
+}
+
+.waypoint {
+	width: 400px;
+	background-color: #ccc;
+	margin-top: 2px;
+	min-height: 32px;
+}
+
+.waypoint_text {
+	width: 90%;
+	display: inline-block;
+}
+
+.transport {
+	width: 80%;
+	height: 250px;
+	padding-left: 32px;
+	background-color: #DDD;
+	display: none;
+	margin-left: auto;
+	margin-right: auto; 
+}
+
+.datetime {
+	margin-left: auto;
+	margin-right: auto;
+	display: inline;
+	width: 45%;
+	padding-left: 10px;
+}
+
+.datetime_edit {
+	width: 16%;
+	margin-left: 15px;
+}
+
+.datetime_container {
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	margin-bottom: 10px;
+}
