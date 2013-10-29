@@ -3,11 +3,9 @@
 	<head>
 		<meta charset='UTF-8'>
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
-		<link rel="stylesheet" type="text/css" href="css/redmond/jquery-ui-1.10.3.custom.min.css" />
 		<script src="https://maps.googleapis.com/maps/api/js?sensor=false&language=pl"></script>
 		<script src="js/jquery/jquery-1.10.2.min.js"></script>
 		<script src="js/jquery/jquery-ui-1.10.3.custom.js"></script>
-		<script src="js/jquery/jquery.tinyscrollbar.min.js"></script>
 	</head>
 	<body>
 		<div id='container'>
@@ -16,45 +14,39 @@
 				<header></header>
 				<article>
 					<div id='map_container'></div>
-					<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
 					<div id='controls_container'>
-						<div class='overview'>
-								<div class='adress'>
-									<label for="start_point">Początek: </label>
-									<input type="text" name="start_point" class='adress_edit'/>
+							<div class='adress'>
+								<label for="start_point">Początek: </label>
+								<input type="text" name="start_point" class='adress_edit'/>
+							</div>
+							<div class='adress'>
+								<label for="start_point">Koniec: </label>
+								<input type="text" name="end_point" class='adress_edit'/>
+							</div>
+							<div class='datetime_container'>
+								<div class='datetime'>
+									<label for='date'>Data (dd/mm/rrrr)</label>
+									<input type="text" name="date" class='datetime_edit'/>
 								</div>
-								<div class='adress'>
-									<label for="start_point">Koniec: </label>
-									<input type="text" name="end_point" class='adress_edit'/>
+								<div class='datetime'>
+									<label for='time'>Godzina (hh:mm)</label>
+									<input type="text" name="time" class='datetime_edit'/>
 								</div>
-								<div class='datetime_container'>
-									<div class='datetime'>
-										<label for='date'>Data (dd/mm/rrrr)</label>
-										<input type="text" name="date" class='datetime_edit'/>
-									</div>
-									<div class='datetime'>
-										<label for='time'>Godzina (hh:mm)</label>
-										<input type="text" name="time" class='datetime_edit'/>
-									</div>
+							</div>
+							<span class='arrow_span span_show' id='waypoints_show'>Punkty pośrednie</span>
+							<div class='waypoints' id='added_waypoints'>
+								<div>
+									<input type="text" name='new_waypoint' class='new_waypoint'/>
+									<span class='add_waypoint_button'>Dodaj punkt</span>
 								</div>
-								<span class='arrow_span span_show' id='waypoints_show'>Punkty pośrednie</span>
-								<div class='waypoints' id='added_waypoints'>
-									<div>
-										<input type="text" name='new_waypoint' class='new_waypoint'/>
-										<span class='add_waypoint_button'>Dodaj punkt</span>
-									</div>
-									<div id='waypoints_list'>
-										<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-										<div class='viewport'>
-											<div class='overview' id='waypoints'>
-												
-											</div>
+								<div id='waypoints_list'>
+										<div id='waypoints'>
+											
 										</div>
-									</div>
 								</div>
-								<span class='arrow_span span_show' id="trans_type">Środek transportu</span>
-								<div class='transport' id="transport">
-								</div>
+							</div>
+							<span class='arrow_span span_show' id="trans_type">Środek transportu</span>
+							<div class='transport' id="transport">
 							</div>
 						</div>
 					</article>

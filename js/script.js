@@ -23,9 +23,11 @@ function calcRoute() {
 	var end = document.getElementsByName('end_point')[0].value;
 	
 	var waypoints = [];
-	waypoints.push({
-		location: 'olkusz',
-		stopover: false
+	$('.waypoint_text').each(function(index){
+		waypoints.push({
+			location: $(this).text(),
+			stopover: false
+		});
 	});
 	
 	if(start == '' || !start){
@@ -57,12 +59,9 @@ function init(){
 $('document').ready(function(){
 	document.getElementsByName('start_point')[0].onblur = calcRoute;
 	document.getElementsByName('end_point')[0].onblur = calcRoute;
-	$('#waypoints_list').tinyscrollbar();
-	$('#content').tinyscrollbar();
 	$('.add_waypoint_button').click(function() {
-		var waypoint = $('<div class="waypoint"><div class="waypoint_text">' + document.getElementsByName('new_waypoint')[0].value + '</div><div class="remove_button" onclick="$(this).parent().remove(); $(\'#waypoints_list\').tinyscrollbar_update();" /></div>');
+		var waypoint = $('<div class="waypoint"><div class="waypoint_text">' + document.getElementsByName('new_waypoint')[0].value + '</div><div class="remove_button" onclick="$(this).parent().remove();" /></div>');
 		$('#waypoints').append(waypoint);
-		$('#waypoints_list').tinyscrollbar_update();
 	});
 });
 
@@ -75,14 +74,12 @@ $('#waypoints_show').click(function(){
 		$('#waypoints_show').removeClass('span_show');
 		$('#waypoints_show').addClass('span_hide');
 		$('#added_waypoints').slideDown(500);
-		$('#waypoints_list').tinyscrollbar_update();
 	}
 	else{
 		$('#waypoints_show').addClass('span_show');
 		$('#waypoints_show').removeClass('span_hide');
 		$('#added_waypoints').slideUp(500);
 	}
-	$('#content').tinyscrollbar_update();
 });
 
 $('#trans_type').click(function(){
@@ -96,5 +93,4 @@ $('#trans_type').click(function(){
 		$('#trans_type').removeClass('span_hide');
 		$('#transport').slideUp(500);
 	}
-	$('#content').tinyscrollbar_update();
 });
