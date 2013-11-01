@@ -29,7 +29,7 @@
 									<input type="text" name="date" class='datetime_edit'/>
 								</div>
 								<div class='datetime'>
-									<label for='time'>Godzina (hh:mm)</label>
+									<label for='time'>Godzina (gg:mm)</label>
 									<input type="text" name="time" class='datetime_edit'/>
 								</div>
 							</div>
@@ -57,6 +57,9 @@
 			<div id='right_gradient' class='gradient'></div>
 		</div>
 		<div class='waiting waiting_disable'><div class='waiting_info'>Proszę czekać...</div></div>
+		<div class='result waiting_disable'>
+			<canvas id='sun_azimuth' width="250px" height="250px"></canvas>
+		</div>
 	</body>
 	<script src='js/script.js'></script>
 </html>

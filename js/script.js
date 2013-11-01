@@ -5,21 +5,160 @@ var route = null;
 
 var map;
 
+var azimuths = new Array(
+	0,0,0,0,0,0,0,0
+);
+
+var count = 0;
+
+var percent_colors = new Array(
+	'#000000',
+	'#111111',
+	'#222222',
+	'#333333',
+	'#444444',
+	'#555555',
+	'#666666',
+	'#777777',
+	'#888888',
+	'#999999',
+	'#AAAAAA',
+	'#BBBBBB',
+	'#CCCCCC',
+	'#DDDDDD',
+	'#EEEEEE',
+	'#FFFFFF'
+);
+
+var carParams = new Array(
+	{
+		length: 300,
+		width: 175,
+		min_height: 80,
+		max_height: 140	
+	},
+	{
+		length: 500,
+		width: 185,
+		min_height: 110,
+		max_height: 190	
+	}
+);
+
+var selectedCar = 0;
+
+function drawResult(){
+	var c = document.getElementById('sun_azimuth');
+	var ctx = c.getContext('2d');
+	
+	console.log(azimuths);
+	
+	ctx.fillStyle = percent_colors[Math.round((azimuths[0] / count) * percent_colors.length)];
+	ctx.beginPath();
+	ctx.arc(125,125,100,1.5 * Math.PI ,Math.PI*1.75,false);
+	ctx.lineTo(125,125);
+	ctx.closePath();
+	ctx.lineWidth = 5;
+	ctx.fill();
+	
+	ctx.fillStyle = percent_colors[Math.round((azimuths[1] / count) * percent_colors.length)];
+	ctx.beginPath();
+	ctx.arc(125,125,100,1.75 * Math.PI ,Math.PI*2,false);
+	ctx.lineTo(125,125);
+	ctx.closePath();
+	ctx.lineWidth = 5;
+	ctx.fill();
+	
+	ctx.fillStyle = percent_colors[Math.round((azimuths[2] / count) * percent_colors.length)];
+	ctx.beginPath();
+	ctx.arc(125,125,100,0 ,Math.PI*0.25,false);
+	ctx.lineTo(125,125);
+	ctx.closePath();
+	ctx.lineWidth = 5;
+	ctx.fill();
+	
+	ctx.fillStyle = percent_colors[Math.round((azimuths[3] / count) * percent_colors.length)];
+	ctx.beginPath();
+	ctx.arc(125,125,100,0.25 * Math.PI ,Math.PI*0.5,false);
+	ctx.lineTo(125,125);
+	ctx.closePath();
+	ctx.lineWidth = 5;
+	ctx.fill();
+	
+	ctx.fillStyle = percent_colors[Math.round((azimuths[4] / count) * percent_colors.length)];
+	ctx.beginPath();
+	ctx.arc(125,125,100,0.5 * Math.PI ,Math.PI*0.75,false);
+	ctx.lineTo(125,125);
+	ctx.closePath();
+	ctx.lineWidth = 5;
+	ctx.fill();
+	
+	ctx.fillStyle = percent_colors[Math.round((azimuths[5] / count) * percent_colors.length)];
+	ctx.beginPath();
+	ctx.arc(125,125,100,0.75 * Math.PI ,Math.PI,false);
+	ctx.lineTo(125,125);
+	ctx.closePath();
+	ctx.lineWidth = 5;
+	ctx.fill();
+	
+	ctx.fillStyle = percent_colors[Math.round((azimuths[6] / count) * percent_colors.length)];
+	ctx.beginPath();
+	ctx.arc(125,125,100,Math.PI ,Math.PI*1.25,false);
+	ctx.lineTo(125,125);
+	ctx.closePath();
+	ctx.lineWidth = 5;
+	ctx.fill();
+	
+	ctx.fillStyle = percent_colors[Math.round((azimuths[7] / count) * percent_colors.length)];
+	ctx.beginPath();
+	ctx.arc(125,125,100,1.25 * Math.PI ,Math.PI*1.5,false);
+	ctx.lineTo(125,125);
+	ctx.closePath();
+	ctx.lineWidth = 5;
+	ctx.fill();
+	//ctx.beginPath();
+	//ctx.arc(150,75,50,0*Math.PI,1.5*Math.PI);
+	//ctx.stroke();
+}
+
 function process(){
 	$('.waiting').removeClass('waiting_disable');
+	
+	var year = parseInt(document.getElementsByName('date')[0].value.split('/')[2]);
+	var month = parseInt(document.getElementsByName('date')[0].value.split('/')[1])-1;
+	var day = parseInt(document.getElementsByName('date')[0].value.split('/')[0]);
+	
+	var hour = parseInt(document.getElementsByName('time')[0].value.split(':')[0]);
+	var minute = parseInt(document.getElementsByName('time')[0].value.split(':')[1]);
+	
 	var steps = route.routes[0].legs[0].steps;
+	
+	var time = 0;
+	count = 0;
+	for(var k = 0; k < 8; k++){
+		azimuths[k] = 0;
+	}
 	for(var i = 0; i < steps.length; i++){
 		var step = steps[i];
-		console.log(step.distance.text);
+		console.log(step);
 		for(var j = 0; j < step.path.length - 1; j++){
 			var pos = step.path[j];
 			var next_pos = step.path[j+1];
 			var angel = carAngel(pos.lb, pos.mb, next_pos.lb, next_pos.mb);
 			angel = angel * 180 / Math.PI;
-			console.log(pos.lb + ', ' + pos.mb + ' - ' + next_pos.lb + ', ' + next_pos.mb);
-			console.log(angel);
+			
+			var sunPos = sunPosition(year, month, day, hour, minute, pos.lb, pos.mb);
+			//carParams[selectedCar].max_height / Math.tan(kat * Math.PI / 180);
+			var az = ((sunPos.azimuth + angel) % 360) / 45;
+			azimuths[Math.round(az)]++;
+			count++;
 		}
 	}
+	
+	$('.result').removeClass('waiting_disable');
+	
+	drawResult();
+	
 	$('.waiting').addClass('waiting_disable');
 }
 
@@ -234,4 +373,8 @@ $('#trans_type').click(function(){
 		$('#trans_type').removeClass('span_hide');
 		$('#transport').slideUp(500);
 	}
+});
+
+$('.result').click(function(){
+	$('.result').addClass('waiting_disable');
 });
