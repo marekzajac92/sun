@@ -51,7 +51,7 @@ function drawResult(){
 	var c = document.getElementById('sun_azimuth');
 	var ctx = c.getContext('2d');
 	
-	console.log(azimuths);
+	//console.log(azimuths);
 	
 	ctx.fillStyle = percent_colors[Math.round((azimuths[0] / count) * percent_colors.length)];
 	ctx.beginPath();
@@ -137,17 +137,17 @@ function process(){
 	}
 	for(var i = 0; i < steps.length; i++){
 		var step = steps[i];
-		console.log(step);
+		//console.log(step);
 		for(var j = 0; j < step.path.length - 1; j++){
 			var pos = step.path[j];
 			var next_pos = step.path[j+1];
-			var angel = carAngel(pos.lb, pos.mb, next_pos.lb, next_pos.mb);
+			var angel = carAngel(pos.lat(), pos.lng(), next_pos.lat(), next_pos.lng());
 			angel = angel * 180 / Math.PI;
 			
 			var min = minute + (step.duration.value / 60 * (j / step.path.length));
 			var h = hour + min / 60;
 			
-			var sunPos = sunPosition(year, month, day, h, min, pos.lb, pos.mb);
+			var sunPos = sunPosition(year, month, day, h, min, pos.lat(), pos.lng());
 			//carParams[selectedCar].max_height / Math.tan(kat * Math.PI / 180);
 			var az = ((sunPos.azimuth + angel) % 360) / 45;
 			azimuths[Math.round(az)]++;
@@ -157,7 +157,7 @@ function process(){
 		hour += Math.floor(minute / 60);
 		minute = minute % 60;
 		
-		console.log(hour + ' ' + minute);
+		//console.log(hour + ' ' + minute);
 	}
 	
 	$('.result').removeClass('waiting_disable');
@@ -212,7 +212,7 @@ function calcRoute() {
 	directionsService.route(request, function(result, status){
 		if(status == google.maps.DirectionsStatus.OK){
 			route = result;
-			console.log(route);
+			//console.log(route);
 			directionsDisplay.setDirections(result);
 		}
 		$('.waiting').addClass('waiting_disable');
