@@ -116,9 +116,6 @@ function drawResult(){
 	ctx.closePath();
 	ctx.lineWidth = 5;
 	ctx.fill();
-	//ctx.beginPath();
-	//ctx.arc(150,75,50,0*Math.PI,1.5*Math.PI);
-	//ctx.stroke();
 }
 
 function process(){
@@ -147,12 +144,20 @@ function process(){
 			var angel = carAngel(pos.lb, pos.mb, next_pos.lb, next_pos.mb);
 			angel = angel * 180 / Math.PI;
 			
-			var sunPos = sunPosition(year, month, day, hour, minute, pos.lb, pos.mb);
+			var min = minute + (step.duration.value / 60 * (j / step.path.length));
+			var h = hour + min / 60;
+			
+			var sunPos = sunPosition(year, month, day, h, min, pos.lb, pos.mb);
 			//carParams[selectedCar].max_height / Math.tan(kat * Math.PI / 180);
 			var az = ((sunPos.azimuth + angel) % 360) / 45;
 			azimuths[Math.round(az)]++;
 			count++;
 		}
+		minute += Math.round(step.duration.value / 60);
+		hour += Math.floor(minute / 60);
+		minute = minute % 60;
+		
+		console.log(hour + ' ' + minute);
 	}
 	
 	$('.result').removeClass('waiting_disable');
