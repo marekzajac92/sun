@@ -30,18 +30,187 @@ var percent_colors = new Array(
 	'#FFFFFF'
 );
 
+var sits_colors = new Array(
+	'#000000',
+	'#080000',
+	'#100000',
+	'#180000',
+	'#200000',
+	'#280000',
+	'#300000',
+	'#380000',
+	'#400000',
+	'#480000',
+	'#500000',
+	'#580000',
+	'#600000',
+	'#680000',
+	'#700000',
+	'#780000',
+	'#800000',
+	'#880000',
+	'#900000',
+	'#980000',
+	'#A00000',
+	'#A80000',
+	'#B00000',
+	'#B80000',
+	'#C00000',
+	'#C80000',
+	'#D00000',
+	'#D80000',
+	'#E00000',
+	'#E80000',
+	'#F00000',
+	'#F80000',
+	'#FF0000'
+);
+
 var carParams = new Array(
 	{
-		length: 300,
+		length: 240,
 		width: 175,
 		min_height: 80,
-		max_height: 140	
+		max_height: 140,
+		sit_width : 50,
+		sit_height : 60,
+		sits : [
+			{
+				x : 10,
+				y : 40,
+				count : 0
+			},
+			{
+				x : 62.5,
+				y : 40,
+				count : 0
+			},
+			{
+				x : 115,
+				y : 40,
+				count : 0
+			},
+			{
+				x : 15,
+				y : 160,
+				count : 0
+			},
+			{
+				x : 110,
+				y : 160,
+				count : 0
+			}
+		]
 	},
 	{
 		length: 500,
 		width: 185,
 		min_height: 110,
-		max_height: 190	
+		max_height: 190,
+		sit_width : 0,
+		sit_height : 0,
+		sits : [
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+			{
+				x : 0,
+				y : 0,
+				count : 0
+			},
+		]
 	}
 );
 
@@ -116,11 +285,31 @@ function drawResult(){
 	ctx.closePath();
 	ctx.lineWidth = 5;
 	ctx.fill();
+	
+	var left_offset = (200 - carParams[0].width) /2;
+	var bottom_offset = (250 - carParams[0].length) / 2;
+	
+	c = document.getElementById('car_pic');
+	ctx = c.getContext('2d');
+	ctx.beginPath();
+	ctx.rect(left_offset, bottom_offset, carParams[0].width, carParams[0].length);
+	ctx.lineWidth = 3;
+	ctx.strokeStyle = "black";
+	ctx.stroke();
+	
+	for(var i = 0; i < carParams[0].sits.length; i++){
+		ctx.beginPath();
+		ctx.rect(left_offset + carParams[0].sits[i].x, bottom_offset + (carParams[0].length - carParams[0].sits[i].y - carParams[0].sit_height), carParams[0].sit_width, carParams[0].sit_height);
+		ctx.lineWidth = 2;
+		ctx.strokeStyle = "black";
+		ctx.fillStyle = sits_colors[Math.round((carParams[0].sits[i].count / count) * sits_colors.length)];
+		ctx.fill();
+		ctx.stroke();
+	}
+	
 }
 
 function process(){
-	$('.waiting').removeClass('waiting_disable');
-	
 	var year = parseInt(document.getElementsByName('date')[0].value.split('/')[2]);
 	var month = parseInt(document.getElementsByName('date')[0].value.split('/')[1])-1;
 	var day = parseInt(document.getElementsByName('date')[0].value.split('/')[0]);
@@ -128,43 +317,91 @@ function process(){
 	var hour = parseInt(document.getElementsByName('time')[0].value.split(':')[0]);
 	var minute = parseInt(document.getElementsByName('time')[0].value.split(':')[1]);
 	
-	var steps = route.routes[0].legs[0].steps;
+	var selected_car;
 	
-	var time = 0;
-	count = 0;
-	for(var k = 0; k < 8; k++){
-		azimuths[k] = 0;
-	}
-	for(var i = 0; i < steps.length; i++){
-		var step = steps[i];
-		//console.log(step);
-		for(var j = 0; j < step.path.length - 1; j++){
-			var pos = step.path[j];
-			var next_pos = step.path[j+1];
-			var angel = carAngel(pos.lat(), pos.lng(), next_pos.lat(), next_pos.lng());
-			angel = angel * 180 / Math.PI;
-			
-			var min = minute + (step.duration.value / 60 * (j / step.path.length));
-			var h = hour + min / 60;
-			
-			var sunPos = sunPosition(year, month, day, h, min, pos.lat(), pos.lng());
-			//carParams[selectedCar].max_height / Math.tan(kat * Math.PI / 180);
-			var az = ((sunPos.azimuth + angel) % 360) / 45;
-			azimuths[Math.round(az)]++;
-			count++;
+	for(var j = 0; j < document.getElementsByName("trans").length; j++){
+		if(document.getElementsByName("trans")[j].checked){
+			selected_car = carParams[parseInt(document.getElementsByName("trans")[j].value)];
+			break;
 		}
-		minute += Math.round(step.duration.value / 60);
-		hour += Math.floor(minute / 60);
-		minute = minute % 60;
-		
-		//console.log(hour + ' ' + minute);
 	}
 	
-	$('.result').removeClass('waiting_disable');
-	
-	drawResult();
-	
-	$('.waiting').addClass('waiting_disable');
+	if (!isNaN(year) && !isNaN(month) && !isNaN(day) && !isNaN(hour) && !isNaN(minute)) {
+		$('.waiting').removeClass('waiting_disable');
+		
+		var steps = route.routes[0].legs[0].steps;
+		
+		var time = 0;
+		count = 0;
+		for(var k = 0; k < 8; k++){
+			azimuths[k] = 0;
+		}
+		for(var i = 0; i < steps.length; i++){
+			var step = steps[i];
+			//console.log(step);
+			for(var j = 0; j < step.path.length - 1; j++){
+				var pos = step.path[j];
+				var next_pos = step.path[j+1];
+				var angel = carAngel(pos.lat(), pos.lng(), next_pos.lat(), next_pos.lng());
+				angel = angel * 180 / Math.PI;
+				
+				var min = minute + (step.duration.value / 60 * (j / step.path.length));
+				var h = hour + min / 60;
+				
+				var sunPos = sunPosition(year, month, day, h, min, pos.lat(), pos.lng());
+				//carParams[selectedCar].max_height / Math.tan(kat * Math.PI / 180);
+				var az = ((sunPos.azimuth + angel) % 360) / 45;
+				azimuths[Math.round(az)]++;
+				
+				var x1 = selected_car.max_height / Math.tan(sunPos.elevation * Math.PI / 180);
+				var y1 = 0.0;
+				
+				console.log(x1 + " " + sunPos.elevation * Math.PI / 180);
+				
+				var x2 = selected_car.min_height / Math.tan(sunPos.elevation * Math.PI / 180);
+				var y2 = 0.0;
+				
+				var newX1 = x1 * Math.cos(sunPos.azimuth + Math.PI / 2) - y1 * Math.sin(sunPos.azimuth + Math.PI / 2);
+				var newY1 = x1 * Math.sin(sunPos.azimuth + Math.PI / 2) + y1 * Math.cos(sunPos.azimuth + Math.PI / 2);
+				
+				var newX2 = x2 * Math.cos(sunPos.azimuth + Math.PI / 2) - y2 * Math.sin(sunPos.azimuth + Math.PI / 2);
+				var newY2 = x2 * Math.sin(sunPos.azimuth + Math.PI / 2) + y2 * Math.cos(sunPos.azimuth + Math.PI / 2);
+				
+				for(var k = 0; k < selected_car.sits.length; k++){
+					var isSun = false;
+					var sit = selected_car.sits[k];
+					
+					//lewa strona
+					var X11 = newX1;
+					var X12 = newX1;
+					var Y11 = newY1 + selected_car + length;
+					var Y12 = newY1;
+					
+					var X21 = newX2;
+					var X22 = newX2;
+					var Y21 = newY2 + selected_car + length;
+					var Y22 = newY2;
+					
+					if(X11 >= sit.x && X22 <= sit.x + selected_car.sit_width){
+						if()
+					}
+				}
+				
+				count++;
+			}
+			minute += Math.round(step.duration.value / 60);
+			hour += Math.floor(minute / 60);
+			minute = minute % 60;
+			
+			//console.log(hour + ' ' + minute);
+		}
+		
+		$('.result').removeClass('waiting_disable');
+		
+		drawResult();
+		
+		$('.waiting').addClass('waiting_disable');
+	}
 }
 
 function initializeMap () {
