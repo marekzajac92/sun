@@ -12,7 +12,7 @@
 		<div id='container'>
 			<div id='left_gradient' class='gradient'></div>
 			<div id='content'>
-				<header>Sun In Car</header>
+				<header>Sun In Car<img id='show_info' alt="Info" src="img/info.png"/></header>
 				<article>
 					<div id='map_container'></div>
 					<div id='controls_container'>
@@ -75,6 +75,15 @@
 					<td><canvas id='sun_azimuth' width="250px" height="250px"></canvas></td>
 				</tr>
 			</table>
+		</div>
+		<div class="waiting_disable info">
+			<span class="gray_text">Kliknij na tym oknie aby je zamknąć</span>
+			<div class="info_text">
+				<p><b>Sun In Car</b> jest aplikacją dzięki której możesz sprawdzić czy w czasie podróży samochodem lub busem świecące słońce będzie dla Ciebie problemem. Pokazuje, który fotel będzie najdłużej nasłonecznony, w którym miejscu słońce będzie najdłużej świecić na wysokońci oczu, oraz z której strony będą padały promienie.</p>
+				<p>W polach <b>Początek</b> i <b>Koniec</b> wpisz odpowiednio punkt początkowy i końcowy swojej podróży (jeśli podajesz ulicę i miejscowość kolejność powinna być:
+					 <i>ulica, miejscowość</i>). Jak <b>punkty pośrednie</b> możesz podać punkty, przez które będziesz przejeżdżać tak aby jak najdokładniej wyznaczyć twoją trasę. Wybierz też czy poruszasz się samochodem osobowym, minibusem czy autokarem. Na koniec wpisz <b>datę</b> i <b>godzinę</b> wyjazdu.</p>
+					 <p>Kiedy uzupełnisz już pola wybierz przycisk <b>Wyznacz trasę</b>, który wyświetli na mapie wpisaną przez Ciebie drogę. Jeśli jest prawidłowa pozostaje Ci jedynie wybranie przycisku <b>Sprawdź</b>, który pokaże nasłonecznienie pojazdu w trakcie jazdy.</p>
+			</div>
 		</div>
 	</body>
 	<script src='js/script.js'></script>

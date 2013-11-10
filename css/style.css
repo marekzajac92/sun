@@ -319,3 +319,38 @@ header {
 	padding-top: 10px;
 	font-weight: bold;
 }
+
+header img {
+	width: 40px;
+	height: 40px;
+	float: right;
+	margin-right: 20px;
+}
+
+.info {
+	overflow: auto;
+	width: 500px;
+	height: 400px;
+	float: center;
+	margin: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #FFFFFF;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #222222;
+	background-color: #a3d3ff;
+	padding: 10px;
+}
+
+.info .gray_text {
+	text-align: center;
+	margin-left: 75px;
+}
+
+.info_text {
+	text-align: justify;
+}
