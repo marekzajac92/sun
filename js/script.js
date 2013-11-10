@@ -358,6 +358,7 @@ function process(){
 				var pos = step.path[j];
 				var next_pos = step.path[j+1];
 				var angel = carAngel(pos.lat(), pos.lng(), next_pos.lat(), next_pos.lng());
+				var angelrad = angel;
 				angel = angel * 180 / Math.PI;
 				
 				var min = minute + (step.duration.value / 60 * (j / step.path.length));
@@ -376,17 +377,18 @@ function process(){
 				var x2 = selected_car.min_height / Math.tan(sunPos.elevation * Math.PI / 180);
 				var y2 = 0.0;
 				
-				var newX1 = x1 * Math.cos(sunPos.azimuth + Math.PI / 2) - y1 * Math.sin(sunPos.azimuth + Math.PI / 2);
-				var newY1 = x1 * Math.sin(sunPos.azimuth + Math.PI / 2) + y1 * Math.cos(sunPos.azimuth + Math.PI / 2);
+				var newX1 = x1 * Math.cos(sunPos.azimuth + angelrad + Math.PI / 2) - y1 * Math.sin(sunPos.azimuth + angelrad + Math.PI / 2);
+				var newY1 = x1 * Math.sin(sunPos.azimuth + angelrad + Math.PI / 2) + y1 * Math.cos(sunPos.azimuth + angelrad +Math.PI / 2);
 				
 				//console.log(newX1 + ' ' + newY1 + ' ; ' + sunPos.elevation);
 				
-				var newX2 = x2 * Math.cos(sunPos.azimuth + Math.PI / 2) - y2 * Math.sin(sunPos.azimuth + Math.PI / 2);
-				var newY2 = x2 * Math.sin(sunPos.azimuth + Math.PI / 2) + y2 * Math.cos(sunPos.azimuth + Math.PI / 2);
+				var newX2 = x2 * Math.cos(sunPos.azimuth + angelrad + Math.PI / 2) - y2 * Math.sin(sunPos.azimuth + angelrad + Math.PI / 2);
+				var newY2 = x2 * Math.sin(sunPos.azimuth + angelrad + Math.PI / 2) + y2 * Math.cos(sunPos.azimuth + angelrad + Math.PI / 2);
 				
 				var c = document.getElementById('car_pic');
 				var ctx = c.getContext('2d');
 				
+				console.log(sunPos.elevation);
 				for(var k = 0; k < selected_car.sits.length; k++){
 					var isSun = false;
 					var sit = selected_car.sits[k];
