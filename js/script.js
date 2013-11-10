@@ -267,6 +267,450 @@ var carParams = new Array(
 				eyes_count: 0
 			},
 		]
+	},
+	{
+		length: 1400,
+		width: 240,
+		scale: 240 / 1400,
+		min_height: 200,
+		max_height: 310,
+		eyes_height: 240,
+		sit_width : 40,
+		sit_height : 40,
+		sits : [
+			{
+				x : 7.5,
+				y : 10,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 52.5,
+				y : 10,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 97.5,
+				y : 10,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 142.5,
+				y : 10,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 187.5,
+				y : 10,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 7.5,
+				y : 80,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 52.5,
+				y : 80,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 142.5,
+				y : 80,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 187.5,
+				y : 80,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 7.5,
+				y : 150,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 52.5,
+				y : 150,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 142.5,
+				y : 150,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 187.5,
+				y : 150,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 7.5,
+				y : 220,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 52.5,
+				y : 220,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 142.5,
+				y : 220,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 187.5,
+				y : 220,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 7.5,
+				y : 290,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 52.5,
+				y : 290,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 142.5,
+				y : 290,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 187.5,
+				y : 290,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 7.5,
+				y : 360,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 52.5,
+				y : 360,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 142.5,
+				y : 360,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 187.5,
+				y : 360,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 7.5,
+				y : 430,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 52.5,
+				y : 430,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 142.5,
+				y : 430,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 187.5,
+				y : 430,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 7.5,
+				y : 500,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 52.5,
+				y : 500,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 142.5,
+				y : 500,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 187.5,
+				y : 500,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 7.5,
+				y : 570,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 52.5,
+				y : 570,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 7.5,
+				y : 640,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 52.5,
+				y : 640,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 142.5,
+				y : 640,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 187.5,
+				y : 640,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 7.5,
+				y : 710,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 52.5,
+				y : 710,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 142.5,
+				y : 710,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 187.5,
+				y : 710,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 7.5,
+				y : 780,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 52.5,
+				y : 780,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 142.5,
+				y : 780,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 187.5,
+				y : 780,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 7.5,
+				y : 850,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 52.5,
+				y : 850,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 142.5,
+				y : 850,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 187.5,
+				y : 850,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 7.5,
+				y : 920,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 52.5,
+				y : 920,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 142.5,
+				y : 920,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 187.5,
+				y : 920,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 7.5,
+				y : 990,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 52.5,
+				y : 990,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 142.5,
+				y : 990,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 187.5,
+				y : 990,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 7.5,
+				y : 1060,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 52.5,
+				y : 1060,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 142.5,
+				y : 1060,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 187.5,
+				y : 1060,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 7.5,
+				y : 1130,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 52.5,
+				y : 1130,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 142.5,
+				y : 1130,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 187.5,
+				y : 1130,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 7.5,
+				y : 1200,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 52.5,
+				y : 1200,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 142.5,
+				y : 1200,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 187.5,
+				y : 1200,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 27.5,
+				y : 1300,
+				count : 0,
+				eyes_count: 0
+			},
+		]
 	}
 );
 

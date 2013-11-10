@@ -329,7 +329,7 @@ header img {
 
 .info {
 	overflow: auto;
-	width: 500px;
+	width: 550px;
 	height: 400px;
 	float: center;
 	margin: auto;
@@ -348,7 +348,7 @@ header img {
 
 .info .gray_text {
 	text-align: center;
-	margin-left: 75px;
+	margin-left: 150px;
 }
 
 .info_text {
