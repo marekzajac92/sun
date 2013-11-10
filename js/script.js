@@ -79,36 +79,42 @@ var carParams = new Array(
 	{
 		length: 240,
 		width: 175,
-		scale: 1,
+		scale: 1.0,
 		min_height: 65,
 		max_height: 135,
+		eyes_height: 100,
 		sit_width : 50,
 		sit_height : 60,
 		sits : [
 			{
 				x : 10,
 				y : 40,
-				count : 0
+				count : 0,
+				eyes_count: 0
 			},
 			{
 				x : 62.5,
 				y : 40,
-				count : 0
+				count : 0,
+				eyes_count: 0
 			},
 			{
 				x : 115,
 				y : 40,
-				count : 0
+				count : 0,
+				eyes_count: 0
 			},
 			{
 				x : 15,
 				y : 160,
-				count : 0
+				count : 0,
+				eyes_count: 0
 			},
 			{
 				x : 110,
 				y : 160,
-				count : 0
+				count : 0,
+				eyes_count: 0
 			}
 		]
 	},
@@ -118,108 +124,147 @@ var carParams = new Array(
 		scale: 240 / 500,
 		min_height: 110,
 		max_height: 190,
-		sit_width : 0,
-		sit_height : 0,
+		eyes_height: 140,
+		sit_width : 40,
+		sit_height : 40,
 		sits : [
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 5,
+				y : 5,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 50,
+				y : 5,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 95,
+				y : 5,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 140,
+				y : 5,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 5,
+				y : 65,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 50,
+				y : 65,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 140,
+				y : 65,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 5,
+				y : 125,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 50,
+				y : 125,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 140,
+				y : 125,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 5,
+				y : 185,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 50,
+				y : 185,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 140,
+				y : 185,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 5,
+				y : 245,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 50,
+				y : 245,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 140,
+				y : 245,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 5,
+				y : 305,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 50,
+				y : 305,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 140,
+				y : 305,
+				count : 0,
+				eyes_count: 0
 			},
 			{
-				x : 0,
-				y : 0,
-				count : 0
+				x : 5,
+				y : 365,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 50,
+				y : 365,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 140,
+				y : 365,
+				count : 0,
+				eyes_count: 0
+			},
+			{
+				x : 20,
+				y : 430,
+				count : 0,
+				eyes_count: 0
 			},
 		]
 	}
@@ -230,6 +275,8 @@ var selectedCar = 0;
 function drawResult(){
 	var c = document.getElementById('sun_azimuth');
 	var ctx = c.getContext('2d');
+	
+	ctx.clearRect(0,0, 250, 250);
 	
 	//console.log(azimuths);
 	
@@ -297,23 +344,52 @@ function drawResult(){
 	ctx.lineWidth = 5;
 	ctx.fill();
 	
-	var left_offset = (200 - carParams[0].width) /2;
-	var bottom_offset = (250 - carParams[0].length) / 2;
+	var selected_car;
+	
+	for(var j = 0; j < document.getElementsByName("trans").length; j++){
+		if(document.getElementsByName("trans")[j].checked){
+			selected_car = carParams[parseInt(document.getElementsByName("trans")[j].value)];
+			break;
+		}
+	}
+	
+	var left_offset = (200 - selected_car.width * selected_car.scale) /2;
+	var bottom_offset = (250 - selected_car.length * selected_car.scale) / 2;
 	
 	c = document.getElementById('car_pic');
 	ctx = c.getContext('2d');
+	ctx.clearRect(0,0, 200, 250);
 	ctx.beginPath();
-	ctx.rect(left_offset, bottom_offset, carParams[0].width, carParams[0].length);
+	ctx.rect(left_offset, bottom_offset, selected_car.width * selected_car.scale, selected_car.length * selected_car.scale);
 	ctx.lineWidth = 3;
 	ctx.strokeStyle = "black";
 	ctx.stroke();
 	
-	for(var i = 0; i < carParams[0].sits.length; i++){
+	for(var i = 0; i < selected_car.sits.length; i++){
 		ctx.beginPath();
-		ctx.rect(left_offset + carParams[0].sits[i].x, bottom_offset + (carParams[0].length - carParams[0].sits[i].y - carParams[0].sit_height), carParams[0].sit_width, carParams[0].sit_height);
+		ctx.rect(left_offset + selected_car.sits[i].x * selected_car.scale, bottom_offset + (selected_car.length * selected_car.scale - selected_car.sits[i].y * selected_car.scale - selected_car.sit_height * selected_car.scale), selected_car.sit_width * selected_car.scale, selected_car.sit_height * selected_car.scale);
 		ctx.lineWidth = 2;
 		ctx.strokeStyle = "black";
-		ctx.fillStyle = sits_colors[Math.round((carParams[0].sits[i].count / count) * sits_colors.length)];
+		ctx.fillStyle = sits_colors[Math.round((selected_car.sits[i].count / count) * sits_colors.length)];
+		ctx.fill();
+		ctx.stroke();
+	}
+	
+	c = document.getElementById('car_eyes_pic');
+	ctx = c.getContext('2d');
+	ctx.clearRect(0,0,200,250);
+	ctx.beginPath();
+	ctx.rect(left_offset, bottom_offset, selected_car.width * selected_car.scale, selected_car.length * selected_car.scale);
+	ctx.lineWidth = 3;
+	ctx.strokeStyle = "black";
+	ctx.stroke();
+	
+	for(var i = 0; i < selected_car.sits.length; i++){
+		ctx.beginPath();
+		ctx.rect(left_offset + selected_car.sits[i].x * selected_car.scale, bottom_offset + (selected_car.length * selected_car.scale - selected_car.sits[i].y * selected_car.scale - selected_car.sit_height * selected_car.scale), selected_car.sit_width * selected_car.scale, selected_car.sit_height * selected_car.scale);
+		ctx.lineWidth = 2;
+		ctx.strokeStyle = "black";
+		ctx.fillStyle = sits_colors[Math.round((selected_car.sits[i].eyes_count / count) * sits_colors.length)];
 		ctx.fill();
 		ctx.stroke();
 	}
@@ -361,13 +437,15 @@ function process(){
 				var angelrad = angel;
 				angel = angel * 180 / Math.PI;
 				
-				var min = minute + (step.duration.value / 60 * (j / step.path.length));
-				var h = hour + min / 60;
+				var min = minute + (step.duration.value / 60.0 * (j / step.path.length));
+				var h = hour + min / 60.0;
 				
-				var sunPos = sunPosition(year, month, day, h, min, pos.lat(), pos.lng());
+				var sunPos = sunPosition(year, month, day, Math.round(h), Math.round(min), pos.lat(), pos.lng());
 				//carParams[selectedCar].max_height / Math.tan(kat * Math.PI / 180);
 				var az = ((sunPos.azimuth + angel) % 360) / 45;
 				azimuths[Math.round(az)]++;
+				
+				console.log(sunPos.elevation);
 				
 				var x1 = selected_car.max_height / Math.tan(sunPos.elevation * Math.PI / 180);
 				var y1 = 0.0;
@@ -377,18 +455,14 @@ function process(){
 				var x2 = selected_car.min_height / Math.tan(sunPos.elevation * Math.PI / 180);
 				var y2 = 0.0;
 				
-				var newX1 = x1 * Math.cos(sunPos.azimuth + angelrad + Math.PI / 2) - y1 * Math.sin(sunPos.azimuth + angelrad + Math.PI / 2);
-				var newY1 = x1 * Math.sin(sunPos.azimuth + angelrad + Math.PI / 2) + y1 * Math.cos(sunPos.azimuth + angelrad +Math.PI / 2);
+				var newX1 = x1 * Math.cos(sunPos.azimuth + angelrad) - y1 * Math.sin(sunPos.azimuth + angelrad);
+				var newY1 = x1 * Math.sin(sunPos.azimuth + angelrad) + y1 * Math.cos(sunPos.azimuth + angelrad);
 				
 				//console.log(newX1 + ' ' + newY1 + ' ; ' + sunPos.elevation);
 				
-				var newX2 = x2 * Math.cos(sunPos.azimuth + angelrad + Math.PI / 2) - y2 * Math.sin(sunPos.azimuth + angelrad + Math.PI / 2);
-				var newY2 = x2 * Math.sin(sunPos.azimuth + angelrad + Math.PI / 2) + y2 * Math.cos(sunPos.azimuth + angelrad + Math.PI / 2);
+				var newX2 = x2 * Math.cos(sunPos.azimuth + angelrad) - y2 * Math.sin(sunPos.azimuth + angelrad);
+				var newY2 = x2 * Math.sin(sunPos.azimuth + angelrad) + y2 * Math.cos(sunPos.azimuth + angelrad);
 				
-				var c = document.getElementById('car_pic');
-				var ctx = c.getContext('2d');
-				
-				console.log(sunPos.elevation);
 				for(var k = 0; k < selected_car.sits.length; k++){
 					var isSun = false;
 					var sit = selected_car.sits[k];
@@ -523,6 +597,156 @@ function process(){
 					}
 				}
 				
+				x1 = (selected_car.max_height - selected_car.eyes_height) / Math.tan(sunPos.elevation * Math.PI / 180);
+				y1 = 0.0;
+				
+				//console.log(x1 + " " + sunPos.elevation * Math.PI / 180);
+				
+				x2 = 0.0 / Math.tan(sunPos.elevation * Math.PI / 180);
+				y2 = 0.0;
+				
+				newX1 = x1 * Math.cos(sunPos.azimuth + angelrad) - y1 * Math.sin(sunPos.azimuth + angelrad);
+				newY1 = x1 * Math.sin(sunPos.azimuth + angelrad) + y1 * Math.cos(sunPos.azimuth + angelrad);
+				
+				//console.log(newX1 + ' ' + newY1 + ' ; ' + sunPos.elevation);
+				
+				newX2 = x2 * Math.cos(sunPos.azimuth + angelrad) - y2 * Math.sin(sunPos.azimuth + angelrad);
+				newY2 = x2 * Math.sin(sunPos.azimuth + angelrad) + y2 * Math.cos(sunPos.azimuth + angelrad);
+
+				for(var k = 0; k < selected_car.sits.length; k++){
+					var isSun = false;
+					var sit = selected_car.sits[k];
+					
+					//lewa strona
+					var X11 = newX1;
+					var X12 = newX2;
+					var Y11 = newY1 + selected_car.length;
+					var Y12 = newY2 + selected_car.length;
+					
+					var X21 = newX1;
+					var X22 = newX2;
+					var Y21 = newY1;
+					var Y22 = newY2;
+					
+					
+					if(X11 >= sit.x && X12 <= sit.x + selected_car.sit_width){
+						var d1 = sit.x - X12;
+						var d2 = X11 - (sit.x + selected_car.sit_width);
+						var width = selected_car.sit_width;
+						
+						var sx1 = sit.x;
+						var sx2 = sit.x + selected_car.sit_width;
+						if(d1 < 0){
+							width += d1;
+							sx1 = X21;
+						}
+						if(d2 < 0){
+							width += d2;
+							sx2 = X11;
+						}
+						
+						if(width / selected_car.sit_width >= 0.3){
+							if(Y11 >= Y12){
+								if(Y11 - sit.y >= selected_car.sit_height / 2 && sit.y + selected_car.sit_height - Y22 >= selected_car.sit_height / 2){
+									isSun = true;
+								}
+							}
+							else{
+								if(Y12 - sit.y >= selected_car.sit_height / 2 && sit.y + selected_car.sit_height - Y21 >= selected_car.sit_height / 2){
+									isSun = true;
+								}
+							}
+						}
+					}
+					
+					//Prawa strona
+					var X11 = newX1 + selected_car.width;
+					var X12 = newX2 + selected_car.width;
+					var Y11 = newY1 + selected_car.length;
+					var Y12 = newY2 + selected_car.length;
+					
+					var X21 = newX1 + selected_car.width;
+					var X22 = newX2 + selected_car.width;
+					var Y21 = newY1;
+					var Y22 = newY2;
+					
+					if(X11 <= sit.x + selected_car.sit_width && X12 >= sit.x){
+						var d1 = sit.x - X11;
+						var d2 = X12 - (sit.x + selected_car.sit_width);
+						var width = selected_car.sit_width;
+						
+						var sx1 = sit.x;
+						var sx2 = sit.x + selected_car.sit_width;
+						if(d1 < 0){
+							width += d1;
+							sx1 = X11;
+						}
+						if(d2 < 0){
+							width += d2;
+							sx2 = X12;
+						}
+						
+						if(width / selected_car.sit_width >= 0.3){
+							if(Y11 >= Y12){
+								if(Y11 - sit.y >= selected_car.sit_height / 2 && sit.y + selected_car.sit_height - Y22 >= selected_car.sit_height / 2){
+									isSun = true;
+								}
+							}
+							else{
+								if(Y12 - sit.y >= selected_car.sit_height / 2 && sit.y + selected_car.sit_height - Y21 >= selected_car.sit_height / 2){
+									isSun = true;
+								}
+							}
+						}
+					}
+					
+					//Góra
+					var X11 = newX1 + selected_car.width;
+					var X12 = newX2 + selected_car.width;
+					var Y11 = newY1 + selected_car.length;
+					var Y12 = newY2 + selected_car.length;
+					
+					var X21 = newX1;
+					var X22 = newX2;
+					var Y21 = newY1 + selected_car.length;
+					var Y22 = newY2 + selected_car.length;
+					
+					
+					if(Y11 <= sit.y + selected_car.sit_height && Y12 >= sit.y){
+						var d1 = sit.y - Y11;
+						var d2 = Y12 - (sit.x + selected_car.sit_height);
+						var width = selected_car.sit_height;
+						
+						var sx1 = sit.y;
+						var sx2 = sit.y + selected_car.sit_height;
+						if(d1 < 0){
+							width += d1;
+							sx1 = Y11;
+						}
+						if(d2 < 0){
+							width += d2;
+							sx2 = Y12;
+						}
+						
+						if(width / selected_car.sit_height >= 0.3){
+							if(X11 >= X12){
+								if(X11 - sit.x >= selected_car.sit_width / 2 && sit.x + selected_car.sit_width - X22 >= selected_car.sit_width / 2){
+									isSun = true;
+								}
+							}
+							else{
+								if(X12 - sit.x >= selected_car.sit_width / 2 && sit.x + selected_car.sit_width - X21 >= selected_car.sit_width / 2){
+									isSun = true;
+								}
+							}
+						}
+					}
+					
+					if(isSun){
+						selected_car.sits[k].eyes_count++;
+					}
+				}
+				
 				count++;
 			}
 			
@@ -616,17 +840,15 @@ function carAngel(lat1, long1, lat2, long2){
 }
 
 function FNday(year, month, day, hour){
-	luku = -7 * (year + (month + 9) / 12) / 4 + 275 * month / 9 + day;
+	luku = parseInt(- 7 * (year + (month + 9)/12)/4 + 275*month/9 + day);
 	luku += year * 367;
 	
-	//console.log("FNday : " + luku - 730530.0 + hour/24.0);
-	
-	return luku - 730530.0 + hour / 24.0;
+	return parseFloat(luku) - 730530.0 + hour/24.0;
 }
 
 function FNrange(xx){
-	var b = xx / 2 * Math.PI;
-	var a = 2 * Math.PI * b;
+	var b = xx / (2 * Math.PI);
+	var a = 2 * Math.PI * (b - parseInt(b));
 	if(a < 0){
 		a = 2 * Math.PI + a;
 	}
@@ -665,24 +887,21 @@ function FNsun(d){
 	w = 282.9404 + 4.70935E-5 * d;
 	M = 356.047 + 0.9856002585 * d;
 	
-	L = FNrange(w * Math.PI / 180.0 + M * Math.PI / 180.0);
+	L = FNrange(w * (Math.PI / 180.0) + M * (Math.PI / 180.0));
 	
-	g = FNrange(M * Math.PI / 180.0);
-	
-	//console.log(d + " " + w + " " + M);
+	g = FNrange(M * (Math.PI / 180.0));
 	
 	var ecc = 0.016709 - 1.151E-9 * d;
 	var obliq = 23.4393 * Math.PI / 180.0 - 3.563E-7 * Math.PI / 180.0 * d;
 	
 	var E = M + 180.0 / Math.PI * ecc * Math.sin(g) * (1.0 + ecc * Math.cos(g));
-	
 	E = 180.0 / Math.PI *FNrange(E*Math.PI / 180.0);
-	x = Math.cos(E*Math.PI) - ecc;
+	x = Math.cos(E*Math.PI / 180.0) - ecc;
 	y = Math.sin(E*Math.PI / 180.0) * Math.sqrt(1.0 - ecc*ecc);
-	
+
 	r = Math.sqrt(x*x + y*y);
 	
-	v = Math.atan2(y,x)*180.0 / Math.PI;
+	v = Math.atan2(y,x)*(180.0 / Math.PI);
 	
 	var lonsun = v + w;
 	
@@ -693,14 +912,14 @@ function FNsun(d){
 	var yequat = y * Math.cos(obliq);
 	var zequat = y * Math.sin(obliq);
 	
-	RA = Math.atan2(yequat,x);
+	RA = Math.atan2(yequat, x);
 	
-	delta = Math.atan2(zequat,Math.sqrt(x*x + yequat*yequat));
+	delta = Math.atan2(zequat, Math.sqrt(x*x + yequat*yequat));
 	RA*= 180.0 / Math.PI;
 	
 	//console.log("FNsun : " + FNrange(L + 1.915 * Math.PI / 180.0 * Math.sin(g) + .02 * Math.PI / 180.0 * Math.sin(2 * g)));
 	
-	return FNrange(L + 1.915 * Math.PI / 180.0 * Math.sin(g) + .02 * Math.PI / 180.0 * Math.sin(2 * g));
+	return FNrange(L + 1.915 * Math.PI / 180.0 * Math.sin(g) + 0.02 * Math.PI / 180.0 * Math.sin(2 * g));
 }
 
 /*function sunPosition(year, month, day, hour, min, lat, lng){
@@ -807,17 +1026,17 @@ function FNsun(d){
 function sunPosition(year, month, day, hour, minute, lat, lng){
 	//console.log(year + " " + month + " " + day + " " + hour + " " + minute + " " + lat + " " + lng);
 	var h = hour + minute / 60.0;
-	var tzone = 1;
-	var UT = h + tzone;
+	//console.log(4.70935E-5);
+	//console.log(h);
+	var tzone = parseFloat(1);
+	var UT = h - tzone;
 	var jd = FNday(year, month, day, UT);
-	
-	//console.log(h + " " + tzone + " " + UT + " " + jd);
 	
 	var lambda = FNsun(jd);
 	
 	var obliq = 23.4393 * Math.PI / 180.0 - 3.563E-7 * Math.PI / 180.0 * jd;
 	
-	var GMST0 = L*180.0 / Math.PI/15.0 + 12.0;
+	var GMST0 = L*(180.0 / Math.PI)/15.0 + 12.0;
 	var SIDTIME = GMST0 + UT + lng/15.0;
 	
 	var ha = 15.0*SIDTIME - RA;
@@ -830,11 +1049,12 @@ function sunPosition(year, month, day, hour, minute, lat, lng){
 	var xhor = x * Math.sin(lat*Math.PI / 180.0) - z * Math.cos(lat*Math.PI / 180.0);
 	var yhor = y;
 	var zhor = x * Math.cos(lat*Math.PI / 180.0) + z * Math.sin(lat*Math.PI / 180.0);
-	var azim = Math.atan2(yhor,xhor) + Math.PI;
+	var azim = Math.atan2(yhor, xhor) + Math.PI;
 	azim = FNrange(azim);
 	var altit = Math.asin(zhor) * 180.0 / Math.PI;
 	
 	var alpha = Math.atan2(Math.cos(obliq) * Math.sin(lambda), Math.cos(lambda));
+	//console.log(alpha);
 	
 	var equation = 1440 - (L - alpha) * 180.0 / Math.PI * 4;
 	
@@ -858,6 +1078,8 @@ $('document').ready(function(){
 			document.getElementsByName('new_waypoint')[0].value = '';
 		}
 	});
+	
+	console.log(sunPosition(2013,7,12,12,0,50,19).azimuth);
 	
 	document.getElementById('check_route').onclick = process;
 });

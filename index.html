@@ -49,7 +49,7 @@
 							<span class='arrow_span span_show' id="trans_type">Środek transportu</span>
 							<div class='transport' id="transport">
 								<input type="radio" name="trans" value="0" checked>Samochód osobowy<br>
-								<input type="radio" name="trans" value="1" disabled="disabled">Minibus<br>
+								<input type="radio" name="trans" value="1" >Minibus<br>
 								<input type="radio" name="trans" value="2" disabled="disabled">Autokar<br>
 							</div>
 							<div class='button' id='route'>Wyznacz trasę</div>
@@ -63,8 +63,18 @@
 		<div class='waiting waiting_disable'><div class='waiting_info'>Proszę czekać...</div></div>
 		<div class='result waiting_disable'>
 			<span class="gray_text">Kliknij na tym oknie aby je zamknąć</span>
-			<canvas id="car_pic" width="200px" height="250px"></canvas>
-			<canvas id='sun_azimuth' width="250px" height="250px"></canvas>
+			<table>
+				<tr>
+					<td>Oświetlenie na wysokości fotela</td>
+					<td>Oświetlenie na wysokości oczu</td>
+					<td>Kierunek padania słońca</td>
+				</tr>
+				<tr>
+					<td><canvas id="car_pic" width="200px" height="250px"></canvas></td>
+					<td><canvas id="car_eyes_pic" width="200px" height="250px"></canvas></td>
+					<td><canvas id='sun_azimuth' width="250px" height="250px"></canvas></td>
+				</tr>
+			</table>
 		</div>
 	</body>
 	<script src='js/script.js'></script>
